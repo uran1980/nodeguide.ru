@@ -31,7 +31,7 @@ deploy: tests
 refresh:
 	git pull
 
-dev:
+dev: json
 	node app.js
 
 clean:
@@ -39,3 +39,10 @@ clean:
 
 prod: refresh json
 	node server.js
+
+env:
+	@virtualenv env && \
+		. env/bin/activate && \
+		pip install nodeenv && \
+		nodeenv --node=0.4.12 --npm=1.0.106 -p && \
+		npm install
